@@ -1,0 +1,16 @@
+html
+    head
+        title= "Медучреждения"
+    body
+        h1= message
+        table
+            thead
+                th Наименование учреждения
+                th Адрес
+                th Телефон
+            tbody
+                each item in arrayOfHospitalsObject
+                    tr
+                        td #{item.full_name}
+                        td #{item.adress}
+                        td #{item.phone}
