@@ -1,0 +1,11 @@
+html, table{
+    box-sizing: border-box;
+}
+
+table{
+    border-spacing: 0px;
+}
+th, td {
+    border: 2px solid black;
+    margin: 0;
+}
