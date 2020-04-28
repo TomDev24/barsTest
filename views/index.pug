@@ -1,6 +1,7 @@
 html
     head
         title= "Медучреждения"
+        script(defer src='script.js')
     body
         h1= message
         table
@@ -14,3 +15,11 @@ html
                         td #{item.full_name}
                         td #{item.adress}
                         td #{item.phone}
+        div
+            p Имя организации
+                input(id="full_name" type="text")
+            p Адрес
+                input(id="adress" type="text")
+            p Телефон
+                input(id="phone" type="text")
+            input(type="submit" value="Добавить")
