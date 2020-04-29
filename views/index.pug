@@ -11,10 +11,12 @@ html
                 th Телефон
             tbody
                 each item in arrayOfHospitalsObject
-                    tr
+                    tr(data-id=item.id)
                         td #{item.full_name}
                         td #{item.adress}
                         td #{item.phone}
+                        td 
+                            button() Delete
         div
             p Имя организации
                 input(id="full_name" type="text")

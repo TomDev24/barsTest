@@ -21,24 +21,51 @@ app.post('/post', bodyParser, function(req,res){
 	}
 });
 
+app.delete('/del', bodyParser, function(req,res){
+	deleteDataFromIpu(req.body.id);
+	res.send('ok');
+})
+
 app.listen(3000, function(){
-	console.log('Example app is listening!');
+	console.log('------------------');
 });
 
 function getDataFromIpu(){
-	var jsonObj = JSON.parse(fs.readFileSync('ipu.json', 'utf8'));
-	arrayOfHospitalsObject = [];
-	for (idObj in jsonObj){
-		arrayOfHospitalsObject.push(jsonObj[idObj]);
+	try {
+		var jsonObj = JSON.parse(fs.readFileSync('ipu.json', 'utf8'));
+	} catch(err){
+		console.log(err);
 	}
+	var len = Object.keys(jsonObj).length;
+	console.log(len);
+	arrayOfHospitalsObject = [];
+ 	for (var i = 0; i < len; i++){
+		arrayOfHospitalsObject.push(jsonObj[i])
+	};
 	return arrayOfHospitalsObject;
 }
 
 function putDataInIpu(obj){
 	var arrOfObj = getDataFromIpu();
+	var len = Object.keys(arrOfObj).length;
+	obj.id= len;
 	arrOfObj.push(obj);
 	fs.writeFile('ipu.json', JSON.stringify(arrOfObj), function(err){
 		if(err) throw err;
 		console.log('Added');
+	});
+}
+
+function deleteDataFromIpu(id){
+	var arrOfObj = getDataFromIpu();
+	var len = Object.keys(arrOfObj).length;
+	for (var i = 0; i < len; i++){
+		if (i == id){
+			arrOfObj.splice(i, 1);
+		}
+	}; 
+	fs.writeFile('ipu.json', JSON.stringify(arrOfObj), function(err){
+		if(err) throw err;
+		console.log('Deleted');
 	});
 }
