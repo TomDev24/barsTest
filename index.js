@@ -26,6 +26,11 @@ app.delete('/del', bodyParser, function(req,res){
 	res.send('ok');
 })
 
+app.put('/put', bodyParser, function(req,res){
+	updateDataInIpu(req.body);
+	res.send('ok');
+})
+
 app.listen(3000, function(){
 	console.log('------------------');
 });
@@ -67,5 +72,19 @@ function deleteDataFromIpu(id){
 	fs.writeFile('ipu.json', JSON.stringify(arrOfObj), function(err){
 		if(err) throw err;
 		console.log('Deleted');
+	});
+}
+
+function updateDataInIpu(obj){
+	var arrOfObj = getDataFromIpu();
+	var len = Object.keys(arrOfObj).length;
+	for (var i = 0; i < len; i++){
+		if (i == obj.id){
+			arrOfObj[i] = obj;
+		}
+	}; 
+	fs.writeFile('ipu.json', JSON.stringify(arrOfObj), function(err){
+		if(err) throw err;
+		console.log('Updated');
 	});
 }

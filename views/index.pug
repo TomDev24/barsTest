@@ -16,7 +16,11 @@ html
                         td #{item.adress}
                         td #{item.phone}
                         td 
-                            button() Delete
+                            button.delete Delete
+                        td 
+                            button.update Update
+
+        h2 Новая организация
         div
             p Имя организации
                 input(id="full_name" type="text")
