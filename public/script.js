@@ -37,7 +37,8 @@ updBtns.forEach(btn =>{
         var tableRow = this.parentNode.parentNode;
         var td = tableRow.firstChild;
 
-        if (this.textContent =='Send'){
+        if (this.textContent =='Отправить'){
+            console.log('пытаюсь отправить')
             var newObj = {};
             newObj['full_name'] =td.querySelector('input').value;
             newObj['adress'] =td.nextSibling.querySelector('input').value;
@@ -51,16 +52,12 @@ updBtns.forEach(btn =>{
             location.reload();
             return;
         }
-        this.textContent = "Send";
+        this.textContent = "Отправить";
         for (var i = 0; i< 3; i++){
             var inputEl = document.createElement('input');
             inputEl.value = td.textContent;
             td.appendChild(inputEl);
             td = td.nextSibling;
         }
-/*         var xhr = new XMLHttpRequest();
-        xhr.open("DELETE", 'http://localhost:3000/del', true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify({id})); */
     })
 })

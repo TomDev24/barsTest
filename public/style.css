@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+body {
+  font: 100% Helvetica, sans-serif;
+  color: #242f44;
+  background-color: #242f44; }
+
+h1 {
+  text-align: center;
+  background: #fff;
+  margin-bottom: 1rem; }
+
+table {
+  background: #be5f5a;
+  width: 80%;
+  margin: auto;
+  border-collapse: collapse; }
+
+th, td {
+  border: 2px solid #242f44;
+  color: #fff; }
+
+thead {
+  background: #fff; }
+  thead th {
+    padding: .5rem .3rem;
+    color: #242f44; }
+
+.del-btn-container, .upd-btn-container {
+  background-color: #242f44; }
+
+.delete, .update, .send {
+  padding: 0.5rem 0.5rem;
+  border: none;
+  color: #fff;
+  background: #242f44;
+  transition: 0.2s; }
+
+.send {
+  margin-top: 1rem;
+  width: 50%; }
+
+.delete:hover, .update:hover {
+  border-bottom: 1px solid #fff; }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #be5f5a;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 2rem 1rem;
+  margin: auto;
+  width: 50%;
+  color: #fff;
+  font-size: 1.1rem;
+  text-align: center; }
+
+label {
+  display: block; }
+
+input {
+  background: none;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #242f44;
+  margin: 0.5rem 0; }

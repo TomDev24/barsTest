@@ -1,0 +1,77 @@
+@import 'form'
+
+$font-stack: Helvetica, sans-serif
+$primary-color: rgb(190, 95, 90)
+$secondary-color: rgb(36,47,68)
+$white-color: #fff
+
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+body
+    font: 100% $font-stack
+    color: $secondary-color
+    background-color: $secondary-color
+
+h1
+    text-align: center
+    background: $white-color
+    margin-bottom: 1rem
+
+table
+    background: $primary-color
+    width: 80%
+    margin: auto
+    border-collapse: collapse
+
+th, td
+    border: 2px solid $secondary-color
+    color: $white-color
+
+thead
+    background: #fff
+    th
+        padding: .5rem .3rem
+        color: $secondary-color
+
+.del-btn-container, .upd-btn-container
+    background-color: $secondary-color
+
+%button
+    padding: 0.5rem 0.5rem
+    border: none
+    color: #fff
+    background: $secondary-color
+    transition: 0.2s
+
+.delete
+    @extend %button
+
+.update
+    @extend %button
+
+.send
+    @extend %button
+    margin-top: 1rem
+    width: 50%
+
+.delete:hover, .update:hover
+    border-bottom: 1px solid $white-color
+
+.form
+    @include form-style()
+
+label
+    display: block
+
+input
+    background: none
+    color: $white-color
+    border: none
+    outline: none
+    border-bottom: 1px solid $secondary-color
+    margin: 0.5rem 0
+
+

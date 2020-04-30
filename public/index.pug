@@ -1,0 +1,36 @@
+html
+    head
+        title= "Медучреждения"
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="style.css")
+        script(defer src='script.js')
+    body
+        h1 МедПроЭксперт
+        table
+            thead
+                tr
+                    th Наименование учреждения
+                    th Адрес
+                    th Телефон
+                    th(colspan="2") Изменить
+            tbody
+                each item in arrayOfHospitalsObject
+                    tr(data-id=item.id)
+                        td #{item.full_name}
+                        td #{item.adress}
+                        td #{item.phone}
+                        td.del-btn-container
+                            button.delete Удалить
+                        td.upd-btn-container
+                            button.update Обновить
+
+        h2 Новая организация
+        form.form
+            label Имя организации
+            input(id="full_name" type="text")
+            label Адрес
+            input(id="adress" type="text")
+            label Телефон
+            input(id="phone" type="text")
+            input.send(type="submit" value="Добавить")
