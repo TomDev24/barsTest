@@ -38,13 +38,11 @@ updBtns.forEach(btn =>{
         var td = tableRow.firstChild;
 
         if (this.textContent =='Отправить'){
-            console.log('пытаюсь отправить')
             var newObj = {};
             newObj['full_name'] =td.querySelector('input').value;
             newObj['adress'] =td.nextSibling.querySelector('input').value;
             newObj['phone'] =td.nextSibling.nextSibling.querySelector('input').value;
             newObj['id'] = id;
-            console.log(newObj);
             var xhr = new XMLHttpRequest();
             xhr.open("PUT", 'http://localhost:3000/put', true);
             xhr.setRequestHeader('Content-Type', 'application/json');

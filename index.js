@@ -10,7 +10,7 @@ app.use(express.static('views'));
 app.use(express.static('public'));
 
 app.get('/', function(req, res){
-	arrayOfHospitalsObject =getDataFromIpu();
+	var arrayOfHospitalsObject =getDataFromIpu();
 	res.render('index', {arrayOfHospitalsObject});
 });
 
@@ -39,25 +39,17 @@ app.listen(3000, function(){
 });
 
 function getDataFromIpu(){
-	try {
-		var jsonObj = JSON.parse(fs.readFileSync('ipu.json', 'utf8'));
-	} catch(err){
-		console.log(err);
-	}
-	var len = Object.keys(jsonObj).length;
-	console.log(len);
-	arrayOfHospitalsObject = [];
- 	for (var i = 0; i < len; i++){
-		arrayOfHospitalsObject.push(jsonObj[i])
-	};
-	return arrayOfHospitalsObject;
+	var jsonObj = JSON.parse(fs.readFileSync('ipu.json', 'utf8'));
+	return jsonObj;
 }
 
 function putDataInIpu(obj){
 	var arrOfObj = getDataFromIpu();
-	var len = Object.keys(arrOfObj).length;
-	obj.id= len;
-	arrOfObj.push(obj);
+	var arrOfKeys = Object.keys(arrOfObj);
+	var lastObjId = parseInt(arrOfKeys[arrOfKeys.length-1]);
+	var newObjid = (lastObjId + 1).toString();
+	arrOfObj[newObjid] = obj;
+	arrOfObj[newObjid].id = newObjid
 	fs.writeFile('ipu.json', JSON.stringify(arrOfObj), function(err){
 		if(err) throw err;
 		console.log('Added');
@@ -66,12 +58,7 @@ function putDataInIpu(obj){
 
 function deleteDataFromIpu(id){
 	var arrOfObj = getDataFromIpu();
-	var len = Object.keys(arrOfObj).length;
-	for (var i = 0; i < len; i++){
-		if (i == id){
-			arrOfObj.splice(i, 1);
-		}
-	}; 
+	delete arrOfObj[id];
 	fs.writeFile('ipu.json', JSON.stringify(arrOfObj), function(err){
 		if(err) throw err;
 		console.log('Deleted');
@@ -80,12 +67,8 @@ function deleteDataFromIpu(id){
 
 function updateDataInIpu(obj){
 	var arrOfObj = getDataFromIpu();
-	var len = Object.keys(arrOfObj).length;
-	for (var i = 0; i < len; i++){
-		if (i == obj.id){
-			arrOfObj[i] = obj;
-		}
-	}; 
+	arrOfObj[obj.id] = obj;
+
 	fs.writeFile('ipu.json', JSON.stringify(arrOfObj), function(err){
 		if(err) throw err;
 		console.log('Updated');
