@@ -8,7 +8,7 @@ Simple CRUD app(express+pug+sass)
 4. Перейти на http://localhost:3000/
 
 
-###Примечание
+### Примечание
 Чтобы поменять прослушиваемый порт в index.js меняем 3000 на любой удобный вам
 app.listen(3000, function(){
 	console.log('------------------');
